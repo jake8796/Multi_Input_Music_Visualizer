@@ -49,13 +49,13 @@ public:
   int corners[4][2];
   int lastCorners[4][2];
 };
-
+// Constructor
 Dot::Dot(int x, int y, int sizeOfDot)
 {
   _sizeOfDot = sizeOfDot;
   MoveDot(x, y);
 }
-
+// Move Dot to an XY Coordinate on the screen
 void Dot::MoveDot(int x, int y)
 {
   for (int i = 0; i < 4; i++)
