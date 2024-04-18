@@ -32,12 +32,6 @@ The LED matrix is structured in a snaking pattern as shown below
 #define AUX_SELECT 1
 // MIDI instantiation
 MIDI_CREATE_INSTANCE(HardwareSerial, Serial2, midi2);
-// XY Coord structure
-typedef struct coord
-{
-  int x;
-  int y;
-} coord;
 
 // DOT class used for selection on GUI during initialization
 class Dot
@@ -118,7 +112,6 @@ int ledRowsQueue[NUM_OF_ROWS];
 
 int adcValue;
 int ledYValue;
-int averageADC;
 int numberOfADCReadings;
 int counter = 0;
 int rowBuffer[NUM_OF_ROWS] = {0};

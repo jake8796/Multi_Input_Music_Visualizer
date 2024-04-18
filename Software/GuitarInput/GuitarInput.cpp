@@ -19,6 +19,6 @@ GuitarInput::GuitarInput(int pin, uint32_t resolution = 12)
 uint32_t GuitarInput:: GetInput() 
 {
 
-
+    
 
 }
