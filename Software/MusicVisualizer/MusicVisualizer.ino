@@ -96,9 +96,9 @@ RotaryEncoder rotEncode(PIN_A, PIN_B, PIN_SW);
 Dot select(25, 3, 1);
 
 // Globals for thread processes
-int selection = 0;
+uint8_t selection = 0;
 int selectFlag = 0;
-int lastRotationState;
+uint8_t lastRotationState;
 unsigned long timer1 = 0;
 static const BaseType_t pro_cpu = 0; // Assign pro_cpu to core 0
 static const BaseType_t app_cpu = 1; // Assign app_cpu to core 1
@@ -377,7 +377,6 @@ void loop()
 
 void IRAM_ATTR Rotation()
 {
-
   rotEncode.Rotate();
 }
 void IRAM_ATTR ButtonPressed()
