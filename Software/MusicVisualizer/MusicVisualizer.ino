@@ -33,48 +33,9 @@ The LED matrix is structured in a snaking pattern as shown below
 // MIDI instantiation
 MIDI_CREATE_INSTANCE(HardwareSerial, Serial2, midi2);
 
-// DOT class used for selection on GUI during initialization
-class Dot
-{
-public:
-  Dot(int x, int y, int sizeOfDot);
-  void MoveDot(int x, int y);
-  int _sizeOfDot; 
-  int corners[4][2];
-  int lastCorners[4][2];
-};
-// Constructor
-Dot::Dot(int x, int y, int sizeOfDot)
-{
-  _sizeOfDot = sizeOfDot;
-  MoveDot(x, y);
-}
-// Move Dot to an XY Coordinate on the screen
-void Dot::MoveDot(int x, int y)
-{
-  for (int i = 0; i < 4; i++)
-  {
-    for (int j = 0; j < 2; j++)
-    {
-      lastCorners[i][j] = corners[i][j];
-    }
-  }
-  int offset = 0;
-  for (int i = 0; i < 4; i += 2)
-  {
-    corners[i][0] = x + offset;
-    corners[i + 1][0] = x + offset;
-    offset = _sizeOfDot;
-  }
-  for (int i = 0; i < 4; i += 2)
-  {
-    corners[i][1] = y;
-    corners[i + 1][1] = y + _sizeOfDot;
-  }
-}
 
-int SetLedsFromDotCorner(int corners[4][2]);
-int ClearLedsFromDotCorner(int corners[4][2]);
+
+
 
 // Interrupt Service Routines
 void IRAM_ATTR Rotation();
@@ -413,29 +374,6 @@ void IRAM_ATTR MyHandleNoteOff(byte channel, byte pitch, byte velocity)
   {
     Serial.println("Queue Full");
   }
-}
-
-int SetLedsFromDotCorner(int corners[4][2])
-{
-  for (int i = corners[0][0]; i <= corners[3][0]; i++)
-  {
-    for (int j = corners[0][1]; j <= corners[3][1]; j++)
-    {
-      leds[ledMap[j][i]] = CRGB::Blue;
-    }
-  }
-  return 0;
-}
-int ClearLedsFromDotCorner(int corners[4][2])
-{
-  for (int i = corners[0][0]; i <= corners[3][0]; i++)
-  {
-    for (int j = corners[0][1]; j <= corners[3][1]; j++)
-    {
-      leds[ledMap[j][i]] = CRGB::Black;
-    }
-  }
-  return 0;
 }
 
 void showFrameRoutine(void *parameters)

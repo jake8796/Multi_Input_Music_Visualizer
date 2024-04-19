@@ -8,10 +8,11 @@ The LED matrix is structured in a snaking pattern as shown below
 7 | 8  | 23 |...
 ************************************************************/
 
-int LEDMatrix::LEDMatrix(MatrixVars)
+int LEDMatrix::LEDMatrix(MatrixVars matrix)
 {
-    _NUM_OF_ROWS = MatrixVars.NUM_OF_ROWS;
-    _NUM_OF_COLS = MatrixVars.NUM_OF_COLS;
+    _NUM_OF_ROWS = matrix.NUM_OF_ROWS;
+    _NUM_OF_COLS = matrix.NUM_OF_COLS;
+    _color = CRGB::Red;
 }
 
 // Converts a coordinate to an index on the LED Matrix

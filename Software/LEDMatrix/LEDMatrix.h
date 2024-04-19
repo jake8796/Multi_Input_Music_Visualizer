@@ -26,6 +26,7 @@ class LEDMatrix
     private:
         
         CRGB *rgbValues;
+        CRGB _color;
         uint32_t _NUM_OF_ROWS;
         uint32_t _NUM_OF_COLS;
     
