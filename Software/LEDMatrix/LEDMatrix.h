@@ -7,20 +7,27 @@
 // XY Coord structure
 typedef struct coord
 {
-  int x;
-  int y;
+  uint32_t x;
+  uint32_t y;
 } coord;
+
+typedef struct MatrixVars
+{
+  uint32_t NUM_OF_ROWS;
+  uint32_t NUM_OF_COLS;
+}MatrixVars;
 
 class LEDMatrix
 {
     public:
-        LEDMatrix(uint32_t NUM_OF_ROWS, uint32_t NUM_OF_COLUMNS)
-
+        LEDMatrix(MatrixVars);
+        uint32_t CoordToLedIndex(coord);
+        void LedIndexToCoord(uint32_t, coord*);
     private:
-        int CoordToLedIndex(coord coord, int length);
-        void LedIndexToCoord(int index, coord *coord);
+        
         CRGB *rgbValues;
-        uint32_t _resolution;
+        uint32_t _NUM_OF_ROWS;
+        uint32_t _NUM_OF_COLS;
     
 }
 
